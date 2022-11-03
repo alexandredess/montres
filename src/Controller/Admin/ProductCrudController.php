@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
@@ -32,7 +33,19 @@ class ProductCrudController extends AbstractCrudController
             AssociationField::new('marque')->autocomplete(),
             ImageField::new('image')
                 ->setBasePath('uploads/images/')
-                ->setUploadDir('public/uploads/images/')
+                ->setUploadDir('public/uploads/images/'),
+            TextEditorField::new('description')
+                ->setNumOfRows(15)
+                ->setTrixEditorConfig([
+                    'blockAttributes'=>[
+                        'default'   =>['tagName'=>'p'],
+                        'heading1'  =>['tagName'=>'h2'],
+                    ],
+                    'css'=>[
+                        'attachment'=>'admin_file_field_attachment',
+                    ]
+                ])
+
         ];
     }
     
